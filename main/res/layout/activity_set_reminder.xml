@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg1"
+    tools:context=".RecordDetailsActivity">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="150dp"
+        android:rotation="180"
+        android:scaleType="fitXY"
+        android:src="@drawable/cc3" />
+
+    <TextView
+        android:id="@+id/record_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="Set Reminder"
+        android:textColor="@color/black"
+        android:textSize="24dp" />
+
+    <LinearLayout
+        android:id="@+id/recordname_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
+        android:orientation="vertical"
+        android:paddingLeft="22dp"
+        android:paddingRight="22dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_bold"
+            android:text="Date:"
+            android:textColor="@color/black"
+            android:textSize="22dp"
+
+            />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@drawable/rounded_corners"
+            android:fontFamily="@font/poppins_bold"
+            android:onClick="set_date"
+            android:text="Set Date"
+            android:textSize="22dp" />
+        <!-- INSERT HERE CUSTOM ELEMENT -->
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/recorddescription_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/recordname_layout"
+        android:orientation="vertical"
+        android:padding="22dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_bold"
+            android:text="Time:"
+            android:textColor="@color/black"
+            android:textSize="22dp"
+
+            />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@drawable/rounded_corners"
+            android:fontFamily="@font/poppins_bold"
+            android:onClick="set_time"
+            android:text="Set Time"
+            android:textSize="22dp" />
+        <!-- INSERT HERE CUSTOM ELEMENT -->
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Alarm will be set at:"
+            android:layout_marginTop="30dp"
+            android:textSize="22dp"
+            android:fontFamily="@font/poppins_regular"
+            android:textStyle="italic"
+            />
+        <TextView
+            android:gravity="center"
+            android:id="@+id/date_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:textSize="22dp"
+            android:fontFamily="@font/poppins_regular"
+            android:textColor="@color/black"
+            />
+        <TextView
+            android:gravity="center"
+            android:id="@+id/time_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="22dp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/poppins_regular"
+            />
+    </LinearLayout>
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:padding="40dp">
+
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="60dp"
+            android:background="@drawable/rounded_corners"
+            android:fontFamily="@font/poppins_bold"
+            android:onClick="add"
+            android:text="Add"
+            android:textSize="22dp" />
+
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="60dp"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/rounded_corners"
+            android:fontFamily="@font/poppins_bold"
+            android:onClick="cancel"
+            android:text="Cancel"
+            android:textSize="22dp" />
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

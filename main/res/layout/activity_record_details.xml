@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg1"
+    tools:context=".RecordDetailsActivity">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="150dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/cc3" />
+
+    <TextView
+        android:id="@+id/record_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="New Record"
+        android:textColor="@color/black"
+        android:textSize="24dp" />
+
+    <LinearLayout
+        android:id="@+id/recordname_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
+        android:orientation="vertical"
+        android:paddingLeft="22dp"
+        android:paddingRight="22dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_bold"
+            android:text="Record Name: "
+            android:textColor="@color/black"
+            android:textSize="22dp"
+
+            />
+
+        <EditText
+            android:id="@+id/record_name"
+            android:layout_width="match_parent"
+            android:layout_height="63dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/grey"
+            android:fontFamily="@font/poppins_regular"
+            android:hint="ex. Oil Change"
+            android:maxLength="20"
+            android:singleLine="true"
+            android:textSize="22dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/recorddescription_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/recordname_layout"
+        android:orientation="vertical"
+        android:padding="22dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_bold"
+            android:text="Description: "
+            android:textColor="@color/black"
+            android:textSize="22dp"
+
+            />
+
+        <EditText
+            android:id="@+id/record_description"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            android:background="@color/grey"
+            android:fontFamily="@font/poppins_regular"
+            android:hint="..."
+            android:minLines="3"
+            android:textAlignment="center"
+            android:textSize="22dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/service_type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/recorddescription_layout"
+        android:paddingLeft="22dp"
+        android:paddingRight="22dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_bold"
+            android:text="Service Type: "
+            android:textColor="@color/black"
+            android:textSize="22dp" />
+
+        <Spinner
+            android:id="@+id/service_type_spinner"
+            android:layout_width="170dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="10dp"
+            android:background="@color/grey"
+            android:fontFamily="@font/poppins_regular"
+            android:textSize="22dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/service_type"
+        android:orientation="vertical"
+        android:padding="40dp">
+
+        <Button
+            android:id="@+id/addReminderBtn"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:backgroundTint="@color/purple_700"
+            android:fontFamily="@font/poppins_bold"
+            android:onClick="add_reminder"
+            android:text="Set reminder"
+            android:textSize="22dp"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/deleteRecordBtn"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="#403D3D"
+            android:fontFamily="@font/poppins_bold"
+            android:onClick="delete_record"
+            android:text="Delete"
+            android:textSize="22dp"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:padding="40dp">
+
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="60dp"
+            android:background="@drawable/rounded_corners"
+            android:fontFamily="@font/poppins_bold"
+            android:onClick="save_record"
+            android:text="Save"
+            android:textSize="22dp" />
+
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="60dp"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/rounded_corners"
+            android:fontFamily="@font/poppins_bold"
+            android:onClick="cancel_record"
+            android:text="Cancel"
+            android:textSize="22dp" />
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

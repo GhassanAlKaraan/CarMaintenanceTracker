@@ -22,7 +22,7 @@ public class ReminderBroadcast extends BroadcastReceiver {
                 .setContentTitle(title)
                 .setContentText("Remember to check this record!")
                 .setAutoCancel(true)
-                .setPriority(NotificationCompat.PRIORITY_HIGH);
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
 
 
 

@@ -12,17 +12,20 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
 import java.util.Calendar;
+import java.util.UUID;
 
 public class SetReminderActivity extends AppCompatActivity {
 
     TextView time_tv, date_tv;
     String title;
+    Button add_reminder, cancel_reminder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +34,8 @@ public class SetReminderActivity extends AppCompatActivity {
         createNotificationChannel();
         date_tv = findViewById(R.id.date_tv);
         time_tv = findViewById(R.id.time_tv);
-
+        add_reminder = findViewById(R.id.add_reminder);
+        cancel_reminder = findViewById(R.id.cancel_reminder);
         title = getIntent().getStringExtra("message0");
         date_tv.setText(title);
     }
@@ -61,7 +65,7 @@ public class SetReminderActivity extends AppCompatActivity {
             day = Integer.parseInt(dateArray[2]);
         }
         if(myTime == null || myTime.isEmpty()){
-            Toast.makeText(this, "Choose date first", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Choose time first", Toast.LENGTH_SHORT).show();
             return;
         }else{
             String[] timeArray = myTime.split(":");
@@ -72,32 +76,33 @@ public class SetReminderActivity extends AppCompatActivity {
         }
         //calculate the difference
         Calendar currentTime = Calendar.getInstance();
-        long currentTimeInMillis = currentTime.getTimeInMillis();
+//        long currentTimeInMillis = currentTime.getTimeInMillis();
 
         Calendar newTime = Calendar.getInstance();
         newTime.set(year, month-1, day, hour, minute);
 
         long newTimeInMillis = newTime.getTimeInMillis();
 
-        long timeDifferenceInMillis = newTimeInMillis - currentTimeInMillis;
+//        long timeDifferenceInMillis = newTimeInMillis - currentTimeInMillis;
 
 
         //DEBUGGING
-        System.out.println(year);
-        System.out.println(month);
-        System.out.println(day);
-        System.out.println(hour);
-        System.out.println(minute);
-        System.out.println("New time "+ newTimeInMillis);
-        System.out.println("Current time "+ currentTimeInMillis);
-        System.out.println("difference is "+timeDifferenceInMillis);
-
+//        System.out.println(year);
+//        System.out.println(month);
+//        System.out.println(day);
+//        System.out.println(hour);
+//        System.out.println(minute);
+//        System.out.println("New time "+ newTimeInMillis);
+//        System.out.println("Current time "+ currentTimeInMillis);
+//        System.out.println("difference is "+timeDifferenceInMillis);
+//
 
         //toast
         Toast.makeText(this, "Reminder Added", Toast.LENGTH_SHORT).show();
 
         //Set up the alarm
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(SetReminderActivity.this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        int requestCode = UUID.randomUUID().hashCode();
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(SetReminderActivity.this, requestCode, intent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_MUTABLE);
 
         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
         //USED FOR DEBUGGING:
@@ -107,7 +112,10 @@ public class SetReminderActivity extends AppCompatActivity {
         alarmManager.set(AlarmManager.RTC_WAKEUP,
                 newTimeInMillis,
                 pendingIntent);
-        finish();
+        add_reminder.setEnabled(false);
+        add_reminder.setText("Added");
+        cancel_reminder.setText("Go Back");
+        //finish();
     }
 
     public void set_date(View v) {
@@ -154,12 +162,12 @@ public class SetReminderActivity extends AppCompatActivity {
                 Calendar currentTime = Calendar.getInstance();
 
                 // Check if the selected time is in the past
+                //Showing the picked value in the textView
                 if (selectedTime.getTimeInMillis()<currentTime.getTimeInMillis()) {
                     // Display a message to the user
                     Toast.makeText(SetReminderActivity.this, "Please select a time in the future.", Toast.LENGTH_SHORT).show();
                 } else {
-                    //Showing the picked value in the textView
-                    time_tv.setText(String.valueOf(hour) + ":" + String.valueOf(minute));
+                    time_tv.setText(hour + ":" + minute);
                 }
             }
         }, cHour, cMin, false);
@@ -174,7 +182,7 @@ public class SetReminderActivity extends AppCompatActivity {
             NotificationManager notificationManager = getSystemService(NotificationManager.class);
 
             // Create the NotificationChannel with the specified parameters
-            NotificationChannel channel = new NotificationChannel("cartracker", name, NotificationManager.IMPORTANCE_HIGH);
+            NotificationChannel channel = new NotificationChannel("cartracker", name, NotificationManager.IMPORTANCE_DEFAULT);
             channel.setDescription(description);
 
             // Register the channel with the system
